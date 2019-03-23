@@ -1,4 +1,5 @@
-from Challenge import Challenge
+from ChallengeManager import ChallengeManager
+from Run import Run
 from os import listdir
 from os.path import isfile, join
 
@@ -18,7 +19,13 @@ if __name__ == '__main__':
     onlyFiles = [f for f in listdir(statsPath) if isfile(join(statsPath, f))]
     print("Found {} challenge stats in {}.".format(len(onlyFiles), statsPath))
 
+    # We're going to create a map of challenge names to Challenge objects, which in turn contain the list of runs.
+    manager = ChallengeManager()
+
     # Iterate over all files
     for f in onlyFiles:
-        testChallenge = Challenge.parse_file(statsPath, f)
-        print(testChallenge.to_string())
+        run = Run.parse_file(statsPath, f)
+        print(run.to_string())
+        manager.add_run(run)
+
+    print(manager.all_high_scores())
