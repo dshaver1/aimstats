@@ -4,10 +4,11 @@ from os.path import isfile, join
 
 if __name__ == '__main__':
 
-    # Get stats directory from user. Implement search function
-    statsPath = input("Path to stats directory?")
+    defaultPath = "H:\\Games\\steamapps\\common\\FPSAimTrainer\\FPSAimTrainer\\stats"
+    # Get stats directory from user. TODO: Implement search function so users don't need to do this?
+    statsPath = input("Path to stats directory? ({}) ".format(defaultPath))
     if len(statsPath) == 0:
-        statsPath = "H:\\Games\\steamapps\\common\\FPSAimTrainer\\FPSAimTrainer\\stats"
+        statsPath = defaultPath
 
     # If user input didn't end in a slash, add it.
     if statsPath[len(statsPath):len(statsPath)] != "\\":
